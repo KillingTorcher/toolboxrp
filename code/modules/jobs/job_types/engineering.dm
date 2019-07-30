@@ -60,7 +60,8 @@ Chief Engineer
 	gloves = /obj/item/clothing/gloves/color/yellow
 	head = null
 	internals_slot = slot_s_store
-
+    
+	implants = list(/obj/item/implant/mindshield)
 
 /*
 Station Engineer
