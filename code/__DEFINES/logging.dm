@@ -12,6 +12,7 @@
 #define INVESTIGATE_PORTAL			"portals"
 #define INVESTIGATE_RESEARCH		"research"
 #define INVESTIGATE_HALLUCINATIONS	"hallucinations"
+#define INVESTIGATE_NANITES			"nanites"
 #define INVESTIGATE_RADIATION		"radiation"
 #define INVESTIGATE_EXONET			"exonet"
 
