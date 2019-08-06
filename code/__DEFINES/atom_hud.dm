@@ -23,6 +23,8 @@
 //for antag huds. these are used at the /mob level
 #define ANTAG_HUD		"19"
 #define BLUE_HUD_TEXT	"20"
+#define NANITE_HUD "21"
+#define DIAG_NANITE_FULL_HUD "22"
 
 //by default everything in the hud_list of an atom is an image
 //a value in hud_list with one of these will change that behavior
