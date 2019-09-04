@@ -379,9 +379,9 @@
 	var/breath_delay = 30 //you can breathe 1 second early, for lag, but no more (otherwise you could spam heal)
 
 	//How much to heal per breath, negative numbers would HURT the player
-	var/heal_brute = 5
-	var/heal_burn = 5
-	var/heal_oxy = 5
+	var/heal_brute = 1
+	var/heal_burn = 1
+	var/heal_oxy = 3
 	
 /obj/item/organ/lungs/cursed/noheal // like the cursed ones but dont heal at all
 	heal_brute = 0
