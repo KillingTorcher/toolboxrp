@@ -370,6 +370,74 @@
 	cold_level_2_threshold = 140
 	cold_level_3_threshold = 100
 
+/obj/item/organ/lungs/cursed
+	name = "cursed lungs"
+	desc = "Lungs but you have to breathe manually."
+	icon_state = "lungs-cursed"
+	actions_types = list(/datum/action/item_action/organ_action/cursed_lungs)
+	var/last_breath = 0
+	var/breath_delay = 30 //you can breathe 1 second early, for lag, but no more (otherwise you could spam heal)
+
+	//How much to heal per breath, negative numbers would HURT the player
+	var/heal_brute = 5
+	var/heal_burn = 5
+	var/heal_oxy = 5
+	
+/obj/item/organ/lungs/cursed/noheal // like the cursed ones but dont heal at all
+	heal_brute = 0
+	heal_burn = 0
+	heal_oxy = 0
+
+/obj/item/organ/lungs/cursed/check_breath(datum/gas_mixture/breath, mob/living/carbon/human/H)
+	if(world.time > (last_breath + breath_delay))
+		if(ishuman(owner) && owner.client) //While this entire item exists to make people suffer, they can't control disconnects.
+			if(!(H.has_trait(TRAIT_NOBREATH)))
+				to_chat(H, "<span class = 'userdanger'>You have to breathe manually!</span>")
+				H.adjustOxyLoss(HUMAN_MAX_OXYLOSS)
+				return
+		else
+			last_breath = world.time 
+	..()
+
+/obj/item/organ/lungs/cursed/attack(mob/living/carbon/human/H, mob/living/carbon/human/user, obj/target)
+	if(H == user && istype(H))
+		to_chat(owner, "<span class ='userdanger'>You eat the [src], puking out your old lungs soon after.</span>")
+		user.temporarilyRemoveItemFromInventory(src, TRUE)
+		Insert(user)
+	else
+		return ..()
+
+/obj/item/organ/lungs/cursed/Insert(mob/living/carbon/M, special = 0)
+	..()
+	if(owner)
+		to_chat(owner, "<span class ='userdanger'>Your lungs have been replaced with cursed lungs. This means you have to breathe manually!</span>")
+
+
+/datum/action/item_action/organ_action/cursed_lungs
+	name = "Breathe"
+
+/datum/action/item_action/organ_action/cursed_lungs/Trigger()
+	. = ..()
+	if(. && istype(target, /obj/item/organ/lungs/cursed))
+		var/obj/item/organ/lungs/cursed/cursed_lungs = target
+
+		if(world.time < (cursed_lungs.last_breath + (cursed_lungs.breath_delay-10))) //no spam
+			to_chat(owner, "<span class='userdanger'>Too soon!</span>")
+			return
+
+		cursed_lungs.last_breath = world.time
+		//playsound(owner,'sound/effects/singlebeat.ogg',40,1)
+		to_chat(owner, "<span class = 'notice'>You breathe.</span>")
+
+		var/mob/living/carbon/human/H = owner
+		if(istype(H))
+			if(!(H.has_trait(TRAIT_NOBREATH)))
+				H.adjustBruteLoss(-cursed_lungs.heal_brute)
+				H.adjustFireLoss(-cursed_lungs.heal_burn)
+				H.adjustOxyLoss(-cursed_lungs.heal_oxy)
+				H.breathe()
+
+
 #undef HUMAN_MAX_OXYLOSS
 #undef HUMAN_CRIT_MAX_OXYLOSS
 #undef HEAT_GAS_DAMAGE_LEVEL_1
