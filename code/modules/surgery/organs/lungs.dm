@@ -401,7 +401,6 @@
 
 /obj/item/organ/lungs/cursed/attack(mob/living/carbon/human/H, mob/living/carbon/human/user, obj/target)
 	if(H == user && istype(H))
-		to_chat(owner, "<span class ='userdanger'>You eat the [src], puking out your old lungs soon after.</span>")
 		user.temporarilyRemoveItemFromInventory(src, TRUE)
 		Insert(user)
 	else
