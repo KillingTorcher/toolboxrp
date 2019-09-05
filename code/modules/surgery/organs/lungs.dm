@@ -370,33 +370,32 @@
 	cold_level_2_threshold = 140
 	cold_level_3_threshold = 100
 
-/obj/item/organ/lungs/cursed //yuh yeet
+/obj/item/organ/lungs/cursed
 	name = "cursed lungs"
-	desc = "Lungs but you have to breathe manually." 
-	icon_state = "lungs-cursed" //sexy sprite
-	actions_types = list(/datum/action/item_action/organ_action/cursed_lungs) // so they can breathe
+	desc = "Lungs but you have to breathe manually."
+	icon_state = "lungs-cursed"
+	actions_types = list(/datum/action/item_action/organ_action/cursed_lungs)
 	var/last_breath = 0
+	var/nobreath_damage = HUMAN_MAX_OXYLOSS // oxyloss damage if you dont breathe, default is HUMAN_MAX_OXYLOSS 
 	var/breath_delay = 30 //you can breathe 1 second early, for lag, but no more (otherwise you could spam heal)
 
 	//How much to heal per breath, negative numbers would HURT the player
-	var/heal_brute = 1
-	var/heal_burn = 1
-	var/heal_oxy = 3
-	
-/obj/item/organ/lungs/cursed/noheal // like the cursed ones but dont heal at all
-	heal_brute = 0
-	heal_burn = 0
-	heal_oxy = 0
+	var/heal_brute = 0
+	var/heal_burn = 0
+	var/heal_oxy = 0
 
 /obj/item/organ/lungs/cursed/check_breath(datum/gas_mixture/breath, mob/living/carbon/human/H)
 	if(world.time > (last_breath + breath_delay))
 		if(ishuman(owner) && owner.client) //While this entire item exists to make people suffer, they can't control disconnects.
 			if(!(H.has_trait(TRAIT_NOBREATH)))
-				to_chat(H, "<span class = 'userdanger'>You have to breathe manually!</span>") // tell em
-				H.adjustOxyLoss(HUMAN_MAX_OXYLOSS) // give em oxyloss
+				to_chat(H, "<span class = 'userdanger'>You have to breathe manually!</span>")
+				if (nobreath_damage)
+					H.adjustOxyLoss(nobreath_damage)
+				else
+					H.adjustOxyLoss(HUMAN_MAX_OXYLOSS)
 				return
 		else
-			last_breath = world.time 
+			last_breath = world.time
 	..()
 
 /obj/item/organ/lungs/cursed/attack(mob/living/carbon/human/H, mob/living/carbon/human/user, obj/target)
