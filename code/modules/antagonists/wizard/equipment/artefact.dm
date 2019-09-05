@@ -347,6 +347,12 @@
 	heal_burn = 25
 	heal_oxy = 25
 
+/obj/item/organ/lungs/cursed/wizard // better heal then heart, pumped more often
+	breath_delay = 47.5 // this should be like what 4.75 seconds
+	heal_brute = 30
+	heal_burn = 30
+	heal_oxy = 30
+
 //Warp Whistle: Provides uncontrolled long distance teleportation.
 
 /obj/item/warpwhistle
