@@ -378,6 +378,7 @@
 	var/last_breath = 0
 	var/nobreath_damage = HUMAN_MAX_OXYLOSS // oxyloss damage if you dont breathe, default is HUMAN_MAX_OXYLOSS 
 	var/breath_delay = 30 //you can breathe 1 second early, for lag, but no more (otherwise you could spam heal)
+	var/failed_breaths = 0 // So the damage builds up faster, this counts how many times you failed to breathe.
 
 	//How much to heal per breath, negative numbers would HURT the player
 	var/heal_brute = 0
@@ -388,16 +389,17 @@
 	if(world.time > (last_breath + breath_delay))
 		if(ishuman(owner) && owner.client) //While this entire item exists to make people suffer, they can't control disconnects.
 			if(!(H.has_trait(TRAIT_NOBREATH)))
+				failed_breaths++
 				to_chat(H, "<span class = 'userdanger'>You have to breathe manually!</span>")
-				if (nobreath_damage)
-					H.adjustOxyLoss(nobreath_damage)
+				if (breath_damage)
+					H.adjustOxyLoss(breath_damage * failed_breaths) // So they can't just drink some oxy-healer and call it a day since this will maybe hopefully outdamage it soon (TM)
 				else
-					H.adjustOxyLoss(HUMAN_MAX_OXYLOSS)
+					H.adjustOxyLoss(HUMAN_MAX_OXYLOSS * failed_breaths)
 				return
 		else
 			last_breath = world.time
+			failed_breaths = 0
 	..()
-
 /obj/item/organ/lungs/cursed/attack(mob/living/carbon/human/H, mob/living/carbon/human/user, obj/target)
 	if(H == user && istype(H))
 		user.temporarilyRemoveItemFromInventory(src, TRUE)
