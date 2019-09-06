@@ -398,7 +398,7 @@
 				return
 		else
 			last_breath = world.time
-			failed_breaths = 0
+			failed_breaths = initial(failed_breaths)
 	..()
 /obj/item/organ/lungs/cursed/attack(mob/living/carbon/human/H, mob/living/carbon/human/user, obj/target)
 	if(H == user && istype(H))
