@@ -30,6 +30,7 @@
 		to_chat(user, "<span class='notice'>There is a tiny, banana-shaped slot on its side.</span>")
 
 /obj/item/cartridge/virus/clown/Initialize()
+	..()
 	for(var/path in clown_buyables)
 		var/cost = clown_buyables[path]
 		var/atom/temp = path
@@ -56,8 +57,7 @@
 		if (menu == "")
 			menu = "<B>MENU EMPTY</B>"
 		return menu
-	else
-		..()
+	..()
 
 /obj/item/cartridge/virus/clown/Topic(href, href_list)
 	if(host_pda)
@@ -84,8 +84,8 @@
 		bananapoints += 1
 		qdel(I)
 		return
-	..()
-	/* // redacted for not fucking working
+
+/* // redacted for not fucking working
 /obj/item/device/pda/attackby(obj/item/C, mob/user, params)
 	if(istype(C,/obj/item/reagent_containers/food/snacks/grown/banana) && cartridge && istype(cartridge,/obj/item/cartridge/virus/clown))
 		SendSignal(COMSIG_PARENT_ATTACKBY, cartridge, user, params)
