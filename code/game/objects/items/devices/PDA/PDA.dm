@@ -103,6 +103,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	GLOB.PDAs += src
 	if(default_cartridge)
 		cartridge = new default_cartridge(src)
+		cartridge.host_pda = src
 	if(inserted_item)
 		inserted_item = new inserted_item(src)
 	else
@@ -229,6 +230,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 					if (cartridge.access & CART_CLOWN)
 						dat += "<li><a href='byond://?src=[REF(src)];choice=Honk'><img src=pda_honk.png>Honk Synthesizer</a></li>"
 						dat += "<li><a href='byond://?src=[REF(src)];choice=Trombone'><img src=pda_honk.png>Sad Trombone</a></li>"
+						dat += "<li><a href='byond://?src=[REF(src)];choice=Honkstore'><img src=pda_honk.png>Clown Store</a></li>"
 					if (cartridge.access & CART_MANIFEST)
 						dat += "<li><a href='byond://?src=[REF(src)];choice=41'><img src=pda_notes.png>View Crew Manifest</a></li>"
 					if(cartridge.access & CART_STATUS_DISPLAY)
@@ -494,6 +496,8 @@ GLOBAL_LIST_EMPTY(PDAs)
 				if ( !(last_noise && world.time < last_noise + 20) )
 					playsound(src, 'sound/misc/sadtrombone.ogg', 50, 1)
 					last_noise = world.time
+			if("Honkstore")
+				mode = 55
 			if("Gas Scan")
 				if(scanmode == PDA_SCANNER_GAS)
 					scanmode = PDA_SCANNER_NONE
