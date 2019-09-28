@@ -1,6 +1,6 @@
 /obj/item/cartridge/virus/clown
 	var/bananapoints = 10 // honk
-	var/canrefill = 1 // controls if you can get more banana points
+	var/canrefill = 0 // controls if you can get more banana points by inserting bananas into the cart, default 0 - disabled
 	var/list/buydatums = list()
 	var/list/clown_buyables = list(
 	/obj/item/reagent_containers/food/snacks/grown/banana = 1,
@@ -13,12 +13,18 @@
 	/obj/item/reagent_containers/hypospray/stealthinjector/itchingpowder = 4,
 	/obj/item/banhammer = 5,
 	/obj/item/device/megaphone/clown = 6,
-	/obj/item/stack/sheet/mineral/bananium/five = 30 // honk!!
+	// /obj/item/stack/sheet/mineral/bananium/twentyfive = 35 // no
 	)
-	
-/obj/item/stack/sheet/mineral/bananium/five
-	amount = 5
-	
+
+/obj/item/stack/sheet/mineral/bananium/fifty // QOL for admins, unused
+	amount = 50
+
+/obj/item/stack/sheet/mineral/bananium/twentyfive
+	amount = 25
+
+/obj/item/stack/sheet/mineral/bananium/ten
+	amount = 10
+
 /datum/data/clownstore_item
 	var/item_name = "generic item"
 	var/item_path = null
@@ -71,26 +77,29 @@
 					if (H.put_in_hands(A))
 						to_chat(H, "[A] materializes into your hands!")
 					else
-						to_chat(usr, "[A] materializes onto the floor.")
+						to_chat(H, "[A] materializes onto the floor.")
 				else
 					to_chat(usr, "[A] materializes onto the floor.")
 			else
 				to_chat(usr,"Not enough banana points.")
 	..()
 
-/obj/item/cartridge/virus/clown/attackby(obj/item/I, mob/user)
-	if(istype(I,/obj/item/reagent_containers/food/snacks/grown/banana) && canrefill)
-		to_chat(usr, "You fit [I] into the banana-shaped slot on the side of the cartridge.")
+/obj/item/cartridge/virus/clown/attackby(obj/item/I,mob/user)
+	if(insertbanana(I,user))
+		return
+	..()
+
+/obj/item/cartridge/virus/clown/proc/insertbanana(obj/item/B, mob/user)
+	if(istype(B,/obj/item/reagent_containers/food/snacks/grown/banana) && canrefill)
+		to_chat(usr, "You fit [B] into the banana-shaped slot on the side of the cartridge.")
 		bananapoints += 1
-		qdel(I)
+		qdel(B)
 		return
 
-/* // redacted for not fucking working
-/obj/item/device/pda/attackby(obj/item/C, mob/user, params)
-	if(istype(C,/obj/item/reagent_containers/food/snacks/grown/banana) && cartridge && istype(cartridge,/obj/item/cartridge/virus/clown))
-		SendSignal(COMSIG_PARENT_ATTACKBY, cartridge, user, params)
-		return
-	else
-		..()
-*/
+
+/obj/item/device/pda/attackby(obj/item/C, mob/user)
+	if (istype(cartridge,/obj/item/cartridge/virus/clown))
+		var/obj/item/cartridge/virus/clown/cart = cartridge
+		cart.insertbanana(C,user)
+	..()
 
