@@ -1,5 +1,5 @@
 /obj/item/cartridge/virus/clown
-	var/bananapoints = 10 // honk
+	var/bananapoints = 4 // honk
 	var/canrefill = 0 // controls if you can get more banana points by inserting bananas into the cart, default 0 - disabled
 	var/list/buydatums = list()
 	var/list/clown_buyables = list(
