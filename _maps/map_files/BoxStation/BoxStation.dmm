@@ -47459,6 +47459,7 @@
 	pixel_y = 26
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plasteel/floorgrime,
 /area/maintenance/disposal/incinerator)
 "ckC" = (
@@ -47941,8 +47942,6 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
 	dir = 4
 	},
-/obj/structure/reagent_dispensers/fueltank,
-/obj/item/storage/toolbox/emergency,
 /turf/open/floor/plasteel/floorgrime,
 /area/maintenance/disposal/incinerator)
 "clJ" = (
@@ -56301,67 +56300,7 @@
 	},
 /turf/open/floor/plasteel/neutral/side,
 /area/crew_quarters/dorms)
-"fGS" = (
-/obj/structure/lattice,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/open/space,
-/area/space/nearstation)
-"gUB" = (
-/obj/structure/lattice,
-/obj/structure/window/reinforced,
-/turf/open/space,
-/area/space/nearstation)
-"hgL" = (
-/turf/open/floor/engine/vacuum,
-/area/maintenance/disposal/incinerator)
-"hlA" = (
-/obj/machinery/atmospherics/pipe/simple/orange/visible,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/engine/atmos)
-"hxQ" = (
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/engine/atmos)
-"hQT" = (
-/obj/structure/window/reinforced,
-/obj/structure/lattice,
-/turf/open/space/basic,
-/area/space/nearstation)
-"iOg" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/door/window/northleft,
-/obj/machinery/door/window/southleft,
-/turf/open/floor/plating,
-/area/engine/atmos)
-"niT" = (
-/obj/structure/lattice,
-/obj/machinery/atmospherics/pipe/simple/orange/visible,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/turf/open/space,
-/area/space/nearstation)
-"oVu" = (
+"evQ" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/yellow/visible,
 /obj/structure/window/reinforced{
@@ -56369,14 +56308,25 @@
 	},
 /turf/open/space,
 /area/space/nearstation)
-"qYV" = (
+"eZV" = (
+/obj/machinery/atmospherics/pipe/simple/orange/visible,
+/obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
+/turf/open/floor/plating,
+/area/engine/atmos)
+"fZf" = (
 /obj/structure/lattice,
-/turf/open/space/basic,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/space,
 /area/space/nearstation)
-"wHZ" = (
+"hMh" = (
 /obj/machinery/igniter{
 	icon_state = "igniter0";
 	id = "Incinerator";
@@ -56388,18 +56338,67 @@
 	},
 /turf/open/floor/engine/vacuum,
 /area/maintenance/disposal/incinerator)
-"wSm" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+"jWE" = (
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/open/floor/engine/vacuum,
-/area/maintenance/disposal/incinerator)
-"xxk" = (
+/turf/open/floor/plating,
+/area/engine/atmos)
+"kFl" = (
 /obj/structure/lattice,
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
+/turf/open/space,
+/area/space/nearstation)
+"kJx" = (
+/turf/open/floor/engine/vacuum,
+/area/maintenance/disposal/incinerator)
+"kNU" = (
+/obj/structure/window/reinforced,
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/space/nearstation)
+"oca" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/door/window/northleft,
+/obj/machinery/door/window/southleft,
+/turf/open/floor/plating,
+/area/engine/atmos)
+"pNt" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 1
+	},
+/turf/open/floor/engine/vacuum,
+/area/maintenance/disposal/incinerator)
+"sJm" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/space/nearstation)
+"tEd" = (
+/obj/structure/lattice,
+/obj/machinery/atmospherics/pipe/simple/orange/visible,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/space,
+/area/space/nearstation)
+"xmq" = (
+/obj/structure/lattice,
+/obj/structure/window/reinforced,
 /turf/open/space,
 /area/space/nearstation)
 
@@ -91785,9 +91784,9 @@ ccr
 cdp
 ccr
 cjF
-hQT
-hxQ
-qYV
+kNU
+jWE
+sJm
 aad
 apM
 apM
@@ -92042,9 +92041,9 @@ bTI
 bSi
 bQW
 cjG
-hQT
-hxQ
-qYV
+kNU
+jWE
+sJm
 apM
 apM
 apM
@@ -92300,8 +92299,8 @@ chD
 bQW
 cai
 cky
-hlA
-niT
+eZV
+tEd
 ccr
 ccr
 ccr
@@ -92556,9 +92555,9 @@ cgA
 cfw
 bQW
 aad
-iOg
+oca
 clE
-iOg
+oca
 apM
 apM
 apM
@@ -92813,9 +92812,9 @@ cgB
 cfw
 bQW
 aad
-xxk
-hxQ
-fGS
+kFl
+jWE
+fZf
 aad
 apM
 apM
@@ -93070,9 +93069,9 @@ bQW
 bQW
 bQW
 aad
-gUB
+xmq
 clG
-oVu
+evQ
 bQX
 bQX
 bQX
@@ -94622,7 +94621,7 @@ cqN
 crE
 csh
 csP
-hgL
+kJx
 csg
 csg
 cvg
@@ -94879,7 +94878,7 @@ cqO
 crF
 csi
 csQ
-wHZ
+hMh
 ctL
 cuy
 cvh
@@ -95136,7 +95135,7 @@ cqP
 crG
 cqP
 csR
-wSm
+pNt
 csg
 csg
 cvg
