@@ -27,9 +27,6 @@
 		add_overlay("bomb_assembly")
 
 /obj/item/device/onetankbomb/attackby(obj/item/W, mob/user, params)
-	if(istype(W, /obj/item/device/analyzer))
-		bombtank.attackby(W, user)
-		return
 	if(istype(W, /obj/item/wrench) && !status)	//This is basically bomb assembly code inverted. apparently it works.
 
 		to_chat(user, "<span class='notice'>You disassemble [src].</span>")
@@ -53,6 +50,9 @@
 			to_chat(user, "<span class='notice'>A pressure hole has been bored to [bombtank] valve. \The [bombtank] can now be ignited.</span>")
 	add_fingerprint(user)
 	..()
+
+// /obj/item/onetankbomb/analyzer_act(mob/living/user, obj/item/I)
+// 	bombtank.analyzer_act(user, I)
 
 /obj/item/device/onetankbomb/attack_self(mob/user) //pressing the bomb accesses its assembly
 	bombassembly.attack_self(user, TRUE)

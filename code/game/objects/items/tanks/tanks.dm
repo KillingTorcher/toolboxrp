@@ -107,6 +107,9 @@
 
 		qdel(src)
 
+/obj/item/tank/analyzer_act(mob/living/user, obj/item/I)
+	atmosanalyzer_scan(air_contents, user, src)
+
 /obj/item/tank/deconstruct(disassembled = TRUE)
 	if(!disassembled)
 		var/turf/T = get_turf(src)
@@ -138,10 +141,7 @@
 
 /obj/item/tank/attackby(obj/item/W, mob/user, params)
 	add_fingerprint(user)
-	if((istype(W, /obj/item/device/analyzer)) && get_dist(user, src) <= 1)
-		atmosanalyzer_scan(air_contents, user)
-
-	else if(istype(W, /obj/item/device/assembly_holder))
+	if(istype(W, /obj/item/device/assembly_holder))
 		bomb_assemble(W,user)
 	else
 		. = ..()
@@ -241,9 +241,9 @@
 			message_admins("Explosive tank rupture! Last key to touch the tank was [src.fingerprintslast].")
 			log_game("Explosive tank rupture! Last key to touch the tank was [src.fingerprintslast].")
 		//Give the gas a chance to build up more pressure through reacting
-		air_contents.react()
-		air_contents.react()
-		air_contents.react()
+		air_contents.react(src)
+		air_contents.react(src)
+		air_contents.react(src)
 		pressure = air_contents.return_pressure()
 		var/range = (pressure-TANK_FRAGMENT_PRESSURE)/TANK_FRAGMENT_SCALE
 		var/turf/epicenter = get_turf(loc)
