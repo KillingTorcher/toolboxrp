@@ -51,8 +51,8 @@
 	add_fingerprint(user)
 	..()
 
-// /obj/item/onetankbomb/analyzer_act(mob/living/user, obj/item/I)
-// 	bombtank.analyzer_act(user, I)
+/obj/item/device/onetankbomb/analyzer_act(mob/living/user, obj/item/I)
+	bombtank.analyzer_act(user, I)
 
 /obj/item/device/onetankbomb/attack_self(mob/user) //pressing the bomb accesses its assembly
 	bombassembly.attack_self(user, TRUE)
