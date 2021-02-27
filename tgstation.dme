@@ -1067,6 +1067,7 @@
 #include "code\modules\_toolbox\silly\foods.dm"
 #include "code\modules\_toolbox\silly\hallucination.dm"
 #include "code\modules\_toolbox\silly\lawnmower.dm"
+#include "code\modules\_toolbox\silly\lizard_invasion.dm"
 #include "code\modules\_toolbox\silly\mice.dm"
 #include "code\modules\_toolbox\silly\noose.dm"
 #include "code\modules\_toolbox\silly\pokerchips.dm"
