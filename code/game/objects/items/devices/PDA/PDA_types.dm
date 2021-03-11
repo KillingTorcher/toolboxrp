@@ -14,8 +14,10 @@
 /obj/item/device/pda/clown/proc/AfterSlip(mob/living/carbon/human/M)
 	if (istype(M) && (M.real_name != owner))
 		var/obj/item/cartridge/virus/clown/cart = cartridge
-		if(istype(cart) && cart.charges < 5)
-			cart.charges++
+		if(istype(cart))
+			cart.bananapoints++
+			if(cart.charges < 5) // ugly but has to do to make the BANANAPOINTS go up
+				cart.charges++
 
 // Special AI/pAI PDAs that cannot explode.
 /obj/item/device/pda/ai

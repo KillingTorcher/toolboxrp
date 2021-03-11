@@ -1016,6 +1016,7 @@
 #include "code\modules\_toolbox\admin.dm"
 #include "code\modules\_toolbox\antag_token.dm"
 #include "code\modules\_toolbox\bot_interaction.dm"
+#include "code\modules\_toolbox\clown_shop.dm"
 #include "code\modules\_toolbox\emojis.dm"
 #include "code\modules\_toolbox\extra_roles.dm"
 #include "code\modules\_toolbox\fal_new_player_cam.dm"
