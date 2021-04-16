@@ -48,6 +48,8 @@ Research Director
 
 	backpack = /obj/item/storage/backpack/science
 	satchel = /obj/item/storage/backpack/satchel/tox
+	
+	implants = list(/obj/item/implant/mindshield)
 
 /datum/outfit/job/rd/rig
 	name = "Research Director (Hardsuit)"
